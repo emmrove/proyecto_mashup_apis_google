@@ -1,0 +1,132 @@
+  body{
+    background-image: url(calendario.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+      #map {
+        border: 3px solid red;
+        height: 45%;
+        width: 65%;
+        float: right;
+      }
+
+      #estoy {
+        float: right;
+      }
+
+      #mostrar_citas{
+        border: 3px solid black;
+        float: right;
+        text-align: center;
+        width: 100%;
+      }
+
+      #mostrar_citas table{
+        margin: 0 auto;
+        text-align: left;
+      }
+
+
+      #eventos{
+        border: 3px solid green;
+        float: left;
+        width: 49%;
+      }
+      #comentarios{
+        border: 3px solid purple;
+        float: left;
+        width: 49%;
+      }
+       #eventos_parte2{
+        border: 3px solid green;
+        float: right;
+        width: 49%;
+      }
+
+
+
+      .controls {
+        margin-top: 10px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 300px;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+
+      .pac-container {
+        font-family: Roboto;
+      }
+
+      #type-selector {
+        color: #fff;
+        background-color: #4d90fe;
+
+      }
+
+      #type-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+
+      #right-panel {
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+       #right-panel {
+        float: right;
+        width: 48%;
+        padding-left: 2%;
+      }
+
+      #oculto {
+        border: 3px solid blue;
+        float: left;
+        width: 30%;
+        padding-left: 2%;
+      }
+
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+
+      #floating-panel {
+        margin-left: -100px;
+      }

@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>RECAPCHA</title>
+  </head>
+
+  <body>  
+
+    <script type="text/javascript">
+      var ocultar= function(){
+        if(grecaptcha.getResponse(lugar_recap) > 0){
+          document.getElementById("recap").style.display = "none";
+          document.getElementById("b_submit").style.display = "none";
+          document.getElementById("oculto").hidden = "";
+        }else{
+          grecaptcha.reset(lugar_recap);
+        }
+      };
+      var lugar_recap;
+      var onloadCallback = function() {
+        lugar_recap = grecaptcha.render('recap', {
+          'sitekey' : '6LdshhoUAAAAALdY1BtXwkToU3yRzZRMgyZPiMIn',
+          'theme' : 'light'
+        });
+      };
+
+    </script>
+
+    <h1>Prueba de Recaptcha</h1>
+
+    <div id="recap"></div>
+
+    <div id="b_submit">
+       <input type="submit" value="Submit" onclick="ocultar()"/>
+    </div>
+  
+
+    <div id="oculto" hidden="hidden" >
+      <button id="speech-btn">Empezar</button>
+    </div>
+    <script src="js/crear.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+    </script>    
+  </body>
+</html>

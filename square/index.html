@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+ 
+  <head>
+    
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+      <title>FourSquare</title>
+  </head>
+    <script>
+         var valor ="";
+        var arreglo="";
+         var aux="";
+        var buscarLugar = function(){
+            
+           
+           
+            var query =document.getElementById("lugar").value;
+            
+      
+            var url = "https://api.foursquare.com/v2/venues/search?ll=17.0656987,-96.7254308&radius=300&query="+query+"&oauth_token=3UI5COXWAIG2U55Z0YNE0I40MQ1T1S1H0QGPEU5N1QDV4DUZ&v=20170417";
+          
+         var xhr = new XMLHttpRequest();
+         xhr.open('GET',url,true);
+         xhr.onreadystatechange = function(){
+             if (xhr.readyState == 4 && xhr.status == 200) {
+                
+            arreglo=JSON.parse(xhr.responseText);
+           console.log(arreglo);
+      
+                    var body =document.getElementById("tb");
+                    var _table = document.createElement("table");
+                    var _thead = document.createElement("thead");
+                    var _tbody = document.createElement("tbody");
+                  for (var i = 0; i < arreglo.response.venues.length; i++) {
+                        for(var k = 0; k < 1; k++){
+                            var _tr = document.createElement("tr");
+                            //_tr.setAttribute("onclick","limpiar()");
+                            _tr.setAttribute("onclick","obtenerCont(this)");
+                            
+                        for(var j = 0; j < 1; j++){
+                            var _th = document.createElement("th");
+                            _th.textContent = JSON.stringify(arreglo.response.venues[i].name);
+                            _tr.appendChild(_th);
+                        }
+                            _thead.appendChild(_tr);
+                        }
+                      
+                        }
+                  
+                 _table.appendChild(_thead);
+                 _table.appendChild(_tbody);
+                 body.appendChild(_table);
+                 _table.setAttribute("border", "black 5px solid");
+                 _table.setAttribute("cellspacing", "15px");
+              
+                 }
+             }
+             
+             xhr.send();
+            
+         };
+        
+        
+        function obtenerCont(obj) {
+		var a = obj.getElementsByTagName('th');
+        var b= a[0].innerText;
+            console.log(b);
+            for(var i=0; i <arreglo.response.venues.length;i++ ){
+                if(b === JSON.stringify(arreglo.response.venues[i].name)){
+                   valor=arreglo.response.venues[i].id;
+                   }
+            }
+        };
+            
+        
+        
+         var verComentarios = function(){
+           
+           
+            var url = 'https://api.foursquare.com/v2/venues/'+valor+'/tips?sort=recent&oauth_token=3UI5COXWAIG2U55Z0YNE0I40MQ1T1S1H0QGPEU5N1QDV4DUZ&v=20170417';
+          
+         var xhr = new XMLHttpRequest();
+         xhr.open('GET',url,true);
+         xhr.onreadystatechange = function(){
+             if (xhr.readyState == 4 && xhr.status == 200) {
+                
+            var arreglo1=JSON.parse(xhr.responseText);
+           console.log(arreglo1);
+    
+                 if(arreglo1.response.tips.items.length === 0){
+                     alert("No hay comentarios");  
+                 }else{
+                    for(var i=0; i <arreglo1.response.tips.items.length; i++ ){
+                     aux += " ### "+arreglo1.response.tips.items[i].text;   
+                     }
+                     
+                    alert(aux);
+                     aux="";
+                 }
+                 
+           
+                 }
+             }
+             
+             xhr.send();
+            
+         };
+  
+    </script>
+  <body>
+      
+  	<h1 id="a">Prueba de FOURSQUARE</h1>
+      <label>Ingrese lo que desea buscar: </label>
+      <div>
+          <input type="text" id="lugar"/>
+          <button onclick="buscarLugar()">Buscar</button> 
+      </div>
+
+      <div>
+      <table>
+    <tbody id="tb" onclick="verComentarios()">
+        
+    </tbody>
+      </table>
+      </div>
+
+  </body>
+</html>
+
+
+
